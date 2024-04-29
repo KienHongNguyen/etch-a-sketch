@@ -10,17 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
         clearBoard(); // Automatically clear the board on color change
     });
 
-    createGrid(16); // Initialize with a 16x16 grid
+    let currentSize = 16; // Store the current grid size
+    createGrid(currentSize); // Initialize with a 16x16 grid
 
     function createGrid(size) {
         container.innerHTML = ''; // Clear existing grid
-        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-        let squareSize = 960 / size; // Calculate the size of each square to fit in 960px
         for (let i = 0; i < size * size; i++) {
             const square = document.createElement('div');
-            square.style.width = `${squareSize}px`;
-            square.style.height = `${squareSize}px`;
             square.classList.add('square');
+            square.style.width = `calc(100% / ${size})`; // Dynamic calculation of width
+            square.style.height = `calc(100% / ${size})`; // Dynamic calculation of height
             square.addEventListener('mouseover', () => {
                 square.style.backgroundColor = currentColor; // Apply the selected color on hover
             });
@@ -29,9 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     resizeButton.addEventListener('click', function() {
-        let newSize = prompt("Enter the number of squares per side for the new grid (max 100):", 16);
+        let newSize = prompt("Enter the number of squares per side for the new grid (max 100):", currentSize);
         newSize = parseInt(newSize);
         if (newSize > 0 && newSize <= 100) {
+            currentSize = newSize;
             createGrid(newSize);
         } else {
             alert("Please enter a number between 1 and 100.");
@@ -46,4 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             square.style.backgroundColor = ''; // Clear the background color
         });
     }
+
+    window.addEventListener('resize', () => {
+        createGrid(currentSize); // Recreate the grid with the current size to adjust to new container size
+    });
 });
