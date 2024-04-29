@@ -6,11 +6,29 @@ body {
     align-items: center;
 }
 
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+
+    font-size: 80%;
+    text-align: center;
+    gap: -50px;
+    margin-bottom: -20px;
+}
+
+.header p{
+    margin-top: -5px;
+    font-size: 120%;
+}
+
 /* Button */
 #button-container {
     display: flex;
     justify-content: space-evenly;
-    gap: 0px;
     height: 200px;
     width: 100%;
 }
@@ -46,4 +64,10 @@ button, select {
     border: 1px solid gray;
     box-sizing: border-box;
     transition: background-color 0.2s;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 80%;
 }
