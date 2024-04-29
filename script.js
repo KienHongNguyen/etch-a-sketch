@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentColor = colorPicker.value; // Start with the first color in the dropdown
     colorPicker.addEventListener('change', () => {
         currentColor = colorPicker.value; // Update the color when a new one is selected
-        clearBoard(); // Automatically clear the board on color change
     });
 
     let currentSize = 16; // Store the current grid size
